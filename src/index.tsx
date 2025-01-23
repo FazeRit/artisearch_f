@@ -1,19 +1,57 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { store } from './state/store';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { ThemeProvider } from '@mui/material';
+import { RootState } from './state/store';
+import { lightTheme, darkTheme } from './theme/theme';
+import CssBaseline from '@mui/material/CssBaseline';
+import { setTheme } from './state/theme/themeSlicer';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+const Root = () => {
+  const themeValue = useSelector((state: RootState) => state.theme.value);
+  const dispatch = useDispatch();
+
+  const theme = themeValue === 'light' ? lightTheme : darkTheme;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+      dispatch(setTheme(e.matches ? 'dark' : 'light'));
+    };
+
+    mediaQuery.addEventListener('change', handleSystemThemeChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleSystemThemeChange);
+    };
+  }, [dispatch]);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  );
+};
+
+const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <Root />
+      </Provider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
