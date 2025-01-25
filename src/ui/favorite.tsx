@@ -2,14 +2,8 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { FavoriteProps } from '../utils/dto/index';
 import { FC } from 'react';
-
-interface FavoriteProps {
-    id: number;
-    socialImage: string;
-    title: string;
-    description: string;
-}
 
 const Favorite: FC<FavoriteProps> = ({
     id,
@@ -18,9 +12,9 @@ const Favorite: FC<FavoriteProps> = ({
     description,
 }) => {
     return (
-        <Card
+            <Card
                 sx={{
-                    width: '90%',
+                    width: '100%',
                     height: 60,
                     bgcolor: 'background.paper',
                     boxShadow: 3,
@@ -42,8 +36,7 @@ const Favorite: FC<FavoriteProps> = ({
                 <CardContent
                     sx={{
                         display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
+                        flexDirection: 'column',                        justifyContent: 'space-between',
                         width: '86%',
                         m: 0,
                         p: 1,
@@ -57,7 +50,7 @@ const Favorite: FC<FavoriteProps> = ({
                             lineHeight: 1.2,
                         }}
                     >
-                        {title}
+                    {title}
                     </Typography>
                     <Typography
                         variant="caption"
@@ -66,7 +59,7 @@ const Favorite: FC<FavoriteProps> = ({
                             lineHeight: 1.5,
                         }}
                     >
-                        {description}
+                    {description}
                     </Typography>
                 </CardContent>
             </Card>

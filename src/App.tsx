@@ -2,9 +2,9 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 
 import Header from "./components/header";
-import Filters from "./components/filters";
-import ArticlesList from "./components/articles";
-import Profile from "./components/profile";
+import Filters from "./components/articles/filters";
+import ArticlesList from "./components/articles/articles";
+import Profile from "./components/profile/profile";
 
 function App() {
   return (
