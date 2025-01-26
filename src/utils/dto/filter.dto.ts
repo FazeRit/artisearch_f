@@ -5,4 +5,5 @@ export interface FilterDto {
     positiveReactionsCount: number;
     page: number;
     perPage: number;
+    tagsPage: number;
 }

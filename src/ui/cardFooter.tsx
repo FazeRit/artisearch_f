@@ -5,12 +5,14 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 interface ArticleFooterProps {
+    id: number,
     readingTimeMinutes: number;
     positiveReactionsCount: number;
     createdAt: string;
 }
 
 const ArticleFooter: React.FC<ArticleFooterProps> = ({
+    id,
     readingTimeMinutes,
     positiveReactionsCount,
     createdAt,
@@ -19,9 +21,11 @@ const ArticleFooter: React.FC<ArticleFooterProps> = ({
         <Box
             sx={{
                 display: 'flex',
-                justifyContent: 'space-evenly',
+                justifyContent: 'space-between',
                 alignItems: 'center',
-                mb: 2,
+                mt: 1,
+                mx: 4,
+                width: 460,
             }}
         >
             <Box

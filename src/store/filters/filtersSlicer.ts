@@ -2,12 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { FilterDto } from '../../utils/dto';
 
 const initialState: FilterDto = {
-    readingTimeMinutes: 0,
-    positiveReactionsCount: 0,
+    readingTimeMinutes: 50,
+    positiveReactionsCount: 50,
     tags: [] as string[],
     q: "",
     page: 1,
     perPage: 10,
+    tagsPage: 1
 };
 
 const filtersSlice = createSlice({
@@ -26,15 +27,18 @@ const filtersSlice = createSlice({
         setQuery: (state, action) => {
             state.q = action.payload;
         },
-        setPage: (state, action) => {
-            state.page = action.payload;
+        setTagsPage: (state, action) => {
+            state.tagsPage = action.payload;
         },
         setPerPage: (state, action) => {
-            state.perPage = action.payload
+            state.perPage = action.payload;
+        },
+        setPage: (state, action) => {
+            state.page = action.payload;
         }
     }
 });
 
-export const { setReadingTimeMinutes, setPositiveReactionsCount, setSelectedTags, setQuery, setPage, setPerPage } = filtersSlice.actions;
+export const { setReadingTimeMinutes, setPositiveReactionsCount, setSelectedTags, setQuery, setPage, setPerPage, setTagsPage } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

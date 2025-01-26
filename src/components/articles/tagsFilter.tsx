@@ -1,4 +1,4 @@
-import { useState, FC, ChangeEvent } from "react";
+import { FC, ChangeEvent } from "react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
@@ -9,7 +9,7 @@ import useTags from "../../hooks/useTags";
 import { TagDto } from "../../utils/dto";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
-import { setSelectedTags, setPage } from "../../store/filters/filtersSlicer";
+import { setSelectedTags, setTagsPage } from "../../store/filters/filtersSlicer";
 
 const ITEMS_PER_PAGE = 15;
 
@@ -17,7 +17,7 @@ const TagFilter: FC = () => {
   const dispatch = useDispatch();
 
   const selectedTags = useSelector((state: RootState) => state.filters.tags);
-  const currentPage = useSelector((state: RootState) => state.filters.page);
+  const currentPage = useSelector((state: RootState) => state.filters.tagsPage);
 
   const { tags, isPending, isError } = useTags();
 
@@ -34,7 +34,7 @@ const TagFilter: FC = () => {
   };
 
   const handlePageChange = (_: ChangeEvent<unknown>, value: number) => {
-    dispatch(setPage(value));
+    dispatch(setTagsPage(value));
   };
 
   return (

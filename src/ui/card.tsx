@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { FC } from 'react';
 import ArticleFooter from './cardFooter';
 import Link from '@mui/material/Link';
+
 interface CardProps {
     id: number;
     socialImage: string;
@@ -27,19 +28,31 @@ const ArticleCard: FC<CardProps> = ({
     canonicalUrl,
 }) => {
     return (
-        <Link
-            href={canonicalUrl}
-            underline="none">
-            <Card
+        <Card
+            sx={{
+                width: '90%',
+                height: '100%',
+                bgcolor: 'background.paper',
+                boxShadow: 3,
+                m: 1,
+                display: 'flex',
+                flexDirection: 'row',
+                gap: 0,
+            }}
+        >
+            <Link
                 sx={{
-                    width: '100%',
-                    height: '78%',
-                    bgcolor: 'background.paper',
-                    boxShadow: 3,
+                    textDecoration: 'none',
+                    color: 'text.primary',
+                    width: 100,
+                    height: 100,
                     display: 'flex',
-                    flexDirection: 'row',
-                    gap: 0,
+                    m: 2,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                 }}
+                href={canonicalUrl}
+                underline="none"
             >
                 <CardMedia
                     title="Article Image"
@@ -48,51 +61,51 @@ const ArticleCard: FC<CardProps> = ({
                         objectFit: 'contain',
                         width: 100,
                         height: 100,
-                        m: 1,
                         borderRadius: 1,
                     }}
                 />
-                <CardContent
+            </Link>
+            <CardContent
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    width: 500,
+                    height: 140,
+                    p: 2,
+                    gap: 0,
+                }}
+            >
+                <Typography
+                    variant="body1"
                     sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                        width: 500,
-                        height: 150,
-                        p: 1,
-                        gap: 0,
+                        color: 'text.primary',
+                        fontWeight: 'bold',
+                        lineHeight: 1.2,
+                        height: 30,
                     }}
                 >
-                    <Typography
-                        variant="h5"
-                        sx={{
-                            color: 'text.primary',
-                            fontWeight: 'bold',
-                            lineHeight: 1.2,
-                            height: 20,
-                        }}
-                    >
-                        {title}
-                    </Typography>
-                    <Typography
-                        variant="body1"
-                        sx={{
-                            mt: 1,
-                            color: 'text.secondary',
-                            lineHeight: 1.5,
-                            height: 80
-                        }}
-                    >
-                        {description}
-                    </Typography>
-                    <ArticleFooter
-                        readingTimeMinutes={readingTimeMinutes}
-                        positiveReactionsCount={positiveReactionsCount}
-                        createdAt={createdAt}
-                    />
-                </CardContent>
-            </Card>
-        </Link>
+                {title}
+                </Typography>
+                <Typography
+                    variant="body1"
+                    sx={{
+                        mt: 1,
+                        color: 'text.secondary',
+                        lineHeight: 1.5,
+                        height: 80,
+                    }}
+                >
+                {description}
+                </Typography>
+                <ArticleFooter
+                    id={id}
+                    readingTimeMinutes={readingTimeMinutes}
+                    positiveReactionsCount={positiveReactionsCount}
+                    createdAt={createdAt}
+                />
+            </CardContent>
+        </Card>
     );
 };
 
