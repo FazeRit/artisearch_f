@@ -8,13 +8,7 @@ import { useDeleteFav } from "../../hooks/useDeleteFav";
 import Loading from "../../ui/loading";
 import CustomError from "../../ui/error";
 import { CustomErrorType } from "../../utils/dto";
-
-interface FavoriteProps {
-  id: number;
-  socialImage: string;
-  title: string;
-  description: string;
-}
+import { FavoriteProps } from "../../utils/dto";
 
 interface FavoritesListProps {
   data: FavoriteProps[];

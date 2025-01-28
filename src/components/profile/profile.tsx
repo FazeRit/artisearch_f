@@ -26,10 +26,11 @@ const Profile = () => {
       {!isError && !isPending && user && (
         <FavoritesList
           data={user.favorites.map((fav: any) => ({
-            id: fav.id,
+            id: fav.article.id,
             socialImage: fav.article.socialImage || "",
             title: fav.article.title,
             description: fav.article.description,
+            canonicalUrl: fav.article.canonicalUrl,
           }))}
         />
       )}

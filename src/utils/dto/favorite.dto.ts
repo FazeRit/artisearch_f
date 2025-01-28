@@ -3,4 +3,5 @@ export interface FavoriteProps {
     socialImage: string;
     title: string;
     description: string;
+    canonicalUrl: string;
 }

@@ -14,7 +14,6 @@ import { format } from "date-fns";
 
 const ArticlesList: FC = () => {
   const { articles, isError, isPending, isSuccess } = useArticle();
-  console.log(articles)
 
   const currentPage = useSelector((state: RootState) => state.filters.page);
   const dispatch = useDispatch();

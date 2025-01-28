@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useAddFav } from '../hooks/useAddFav';
 
 interface ArticleFooterProps {
     id: number,
@@ -17,6 +18,8 @@ const ArticleFooter: React.FC<ArticleFooterProps> = ({
     positiveReactionsCount,
     createdAt,
 }) => {
+    const { mutate, isSuccess } = useAddFav();
+
     return (
         <Box
             sx={{
@@ -83,7 +86,14 @@ const ArticleFooter: React.FC<ArticleFooterProps> = ({
             >
                 {createdAt}
             </Typography>
-            <FavoriteBorderIcon fontSize="large" />
+            <FavoriteBorderIcon
+                fontSize="large"
+                sx={{
+                    color: isSuccess ? 'primary.main' : 'text.secondary',
+                    cursor: 'pointer',
+                }}
+                onClick={() => mutate(id)}
+            />
         </Box>
     );
 };

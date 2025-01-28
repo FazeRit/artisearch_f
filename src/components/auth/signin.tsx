@@ -36,6 +36,7 @@ const SignIn = () => {
     onSuccess: (response) => {
       console.log("Login successful:", response.data);
       alert("You have successfully signed in!");
+      window.location.reload();
     },
     onError: (error: any) => {
       console.error("Login failed:", error.response?.data || error.message);
